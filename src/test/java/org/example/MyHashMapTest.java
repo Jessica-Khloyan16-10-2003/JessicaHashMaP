@@ -12,8 +12,36 @@ class MyHashMapTest {
         assertEquals("Jessica",map.get(1));
     }
     @Test
+    public void get() {
+        map.put(1,"Jessica");
+        map.put(2,"Jessica");
+        assertEquals("Jessica",map.get(2));
+    }
+    @Test
+    public void removeTest() {
+        map.put(1,"Jessica");
+        map.put(2,"Jessica");
+        map.put(3,"Jessica");
+        assertEquals(true,map.remove(2));
+    }
+    @Test
+    public void hashMapEqualsIfFalse() {
+        MyHashMap<Integer,String> map1 = new MyHashMap<>();
+        MyHashMap<Integer,String> map2 = new MyHashMap<>();
+        assertEquals(false,map1.equals(map2));
+    }
+    @Test
+    public void hashMapEqualsIfTrue() {
+        MyHashMap<Integer,String> map1 = new MyHashMap<>();
+        assertEquals(true,map1.equals(map1));
+    }
+    @Test
     public void getNull() {
         assertEquals(null,map.get(1));
+    }
+    @Test
+    public void getNullIfParameterNull() {
+        assertEquals(null,map.get(null));
     }
     @Test
     public void initializeWithTwoParameters() {
@@ -21,15 +49,36 @@ class MyHashMapTest {
         assertEquals(32,map.getCapacity());
     }
     @Test
+    public void initializeWithTwoParametersEx1() {
+        int capacity = 14;
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            MyHashMap<Integer,String> map = new MyHashMap<>(capacity);
+        });
+        String expectedMessage = "Емкость должна быть степенью двойки: " + capacity;
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage,actualMessage);
+    }
+    @Test
+    public void initializeWithTwoParametersEx2() {
+        int capacity = -4;
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            MyHashMap<Integer,String> map = new MyHashMap<>(capacity,0.8f);
+        });
+        String expectedMessage = "Емкость не может быть отрицательным числом: " + capacity;
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage,actualMessage);
+    }
+    @Test
     public void isPowerOfTwoException() {
         int capacity = 14;
             Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-                MyHashMap<Integer,String> map = new MyHashMap<>(capacity);
+                MyHashMap<Integer,String> map = new MyHashMap<>(capacity,0.9f);
             });
             String expectedMessage = "Емкость должна быть степенью двойки: " + capacity;
             String actualMessage = exception.getMessage();
             assertEquals(expectedMessage,actualMessage);
         }
+
     @Test
     public void problemOfLoadFactor() {
         float loadFactor = -5f;
@@ -160,5 +209,32 @@ class MyHashMapTest {
     public void toStringHashMap() {
         map.put(1,"Jessica");
         assertEquals("Элемент {ключ=1, значение=Jessica}\n",map.toString());
+    }
+    @Test
+    public void equals() {
+        MyHashMap.Node<Integer,String> node1 = new MyHashMap.Node<>(1,"k",null);
+        assertEquals(true,node1.equals(node1));
+    }
+    @Test
+    public void equalsSecondBranch() {
+        MyHashMap.Node<Integer,String> node1 = new MyHashMap.Node<>(1,"k",null);
+        MyHashMap.Node<Integer,String> node2 = new MyHashMap.Node<>(3,"k",null);
+        assertEquals(false,node1.equals(node2));
+    }
+    @Test
+    public void isEmptyBranch() {
+        map.put(1,"s");
+       assertEquals(false, map.isEmpty());
+    }
+    @Test
+    public void put1Branch() {
+        map.put(1,"s");
+        assertEquals("s", map.get(1));
+    }
+    @Test
+    public void put2Branch() {
+        map.put(1,"s");
+        map.put(1,"sv");
+        assertEquals("sv", map.get(1));
     }
 }

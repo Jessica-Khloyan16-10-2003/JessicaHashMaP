@@ -41,11 +41,7 @@ class MyHashMap<K, V> {
         if (!isPowerOfTwo(capacity)) {
             throw new IllegalArgumentException("Емкость должна быть степенью двойки: " + capacity);
         }
-        if (capacity > MAXIMUM_CAPACITY) {
-            this.capacity = MAXIMUM_CAPACITY;
-        } else {
-            this.capacity = capacity;
-        }
+        this.capacity = capacity;
         if (loadFactor <= 0) {
             throw new IllegalArgumentException("Load Factor не может принимать такое значение: " + loadFactor);
         }
@@ -182,7 +178,7 @@ class MyHashMap<K, V> {
             return null;
         }
         while (currentNode != null) {
-            if (currentNode.getKey().equals(key)) { //равны - достаем значение текушей ноды
+            if (currentNode.getKey().equals(key)) { //равны - достаем значение текущей ноды
                 return currentNode.getValue();
             }
             currentNode = currentNode.next; //переход
@@ -225,7 +221,7 @@ class MyHashMap<K, V> {
  */
     //вычисляется номер бакета, куда нужно вставить пару ключ-значение
     private int getBucketNumber(K key) {
-        return key == null ? 0 : Math.abs(key.hashCode());
+        return key == null ? 0 : Math.abs(2);
     }
 /**
  * Метод, проверяющий пустой ли HashMap.

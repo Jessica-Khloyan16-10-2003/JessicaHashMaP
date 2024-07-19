@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="org.example.MyHashMapTest" time="0.103" tests="20" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="org.example.MyHashMapTest" time="0.2" tests="32" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="20"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="RU"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-20\bin"/>
-    <property name="sun.java.command" value="C:\Users\C343~1\AppData\Local\Temp\surefire15710539703646868126\surefirebooter17196793165755157431.jar C:\Users\МТС\AppData\Local\Temp\surefire15710539703646868126 2024-07-19T15-20-05_571-jvmRun1 surefire3738179815020380124tmp surefire_01534054267953098076tmp"/>
+    <property name="sun.java.command" value="C:\Users\C343~1\AppData\Local\Temp\surefire3718953698639683379\surefirebooter8779945563637477892.jar C:\Users\МТС\AppData\Local\Temp\surefire3718953698639683379 2024-07-19T20-24-35_503-jvmRun1 surefire14030209032305969000tmp surefire_012631525495285699729tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="D:\JessicaHashMap\target\test-classes;D:\JessicaHashMap\target\classes;C:\Users\МТС\.m2\repository\org\junit\jupiter\junit-jupiter\5.9.3\junit-jupiter-5.9.3.jar;C:\Users\МТС\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.3\junit-jupiter-api-5.9.3.jar;C:\Users\МТС\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\МТС\.m2\repository\org\junit\platform\junit-platform-commons\1.9.3\junit-platform-commons-1.9.3.jar;C:\Users\МТС\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\МТС\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.9.3\junit-jupiter-params-5.9.3.jar;C:\Users\МТС\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.3\junit-jupiter-engine-5.9.3.jar;C:\Users\МТС\.m2\repository\org\junit\platform\junit-platform-engine\1.9.3\junit-platform-engine-1.9.3.jar;C:\Users\МТС\.m2\repository\junit\junit\4.8.2\junit-4.8.2.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\C343~1\AppData\Local\Temp\surefire15710539703646868126\surefirebooter17196793165755157431.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\C343~1\AppData\Local\Temp\surefire3718953698639683379\surefirebooter8779945563637477892.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="20.0.1+9-29"/>
@@ -58,24 +58,36 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="64.0"/>
   </properties>
-  <testcase name="getThreshold" classname="org.example.MyHashMapTest" time="0.039"/>
-  <testcase name="removeIfFalse" classname="org.example.MyHashMapTest" time="0.001"/>
-  <testcase name="removeIfTrue" classname="org.example.MyHashMapTest" time="0.003"/>
-  <testcase name="putAndGet" classname="org.example.MyHashMapTest" time="0.004"/>
-  <testcase name="remove" classname="org.example.MyHashMapTest" time="0"/>
+  <testcase name="put2Branch" classname="org.example.MyHashMapTest" time="0.064"/>
+  <testcase name="hashMapEqualsIfTrue" classname="org.example.MyHashMapTest" time="0"/>
+  <testcase name="getThreshold" classname="org.example.MyHashMapTest" time="0.001"/>
+  <testcase name="removeIfFalse" classname="org.example.MyHashMapTest" time="0.002"/>
+  <testcase name="equals" classname="org.example.MyHashMapTest" time="0.001"/>
+  <testcase name="removeIfTrue" classname="org.example.MyHashMapTest" time="0.002"/>
+  <testcase name="putAndGet" classname="org.example.MyHashMapTest" time="0.001"/>
+  <testcase name="remove" classname="org.example.MyHashMapTest" time="0.001"/>
   <testcase name="resizeCheck" classname="org.example.MyHashMapTest" time="0.001"/>
-  <testcase name="keyNull" classname="org.example.MyHashMapTest" time="0.003"/>
-  <testcase name="nodeEqualsIfTrue" classname="org.example.MyHashMapTest" time="0.001"/>
-  <testcase name="nodeEqualsIfFalse" classname="org.example.MyHashMapTest" time="0.002"/>
+  <testcase name="keyNull" classname="org.example.MyHashMapTest" time="0.005"/>
+  <testcase name="isEmptyBranch" classname="org.example.MyHashMapTest" time="0.001"/>
+  <testcase name="nodeEqualsIfTrue" classname="org.example.MyHashMapTest" time="0.002"/>
+  <testcase name="nodeEqualsIfFalse" classname="org.example.MyHashMapTest" time="0.004"/>
   <testcase name="getNull" classname="org.example.MyHashMapTest" time="0.001"/>
-  <testcase name="toStringHashMap" classname="org.example.MyHashMapTest" time="0.007"/>
-  <testcase name="sizeCheck" classname="org.example.MyHashMapTest" time="0"/>
-  <testcase name="putWithReplace" classname="org.example.MyHashMapTest" time="0"/>
+  <testcase name="get" classname="org.example.MyHashMapTest" time="0.001"/>
+  <testcase name="toStringHashMap" classname="org.example.MyHashMapTest" time="0.014"/>
+  <testcase name="hashMapEqualsIfFalse" classname="org.example.MyHashMapTest" time="0.001"/>
+  <testcase name="sizeCheck" classname="org.example.MyHashMapTest" time="0.002"/>
+  <testcase name="putWithReplace" classname="org.example.MyHashMapTest" time="0.002"/>
+  <testcase name="initializeWithTwoParametersEx1" classname="org.example.MyHashMapTest" time="0.009"/>
+  <testcase name="initializeWithTwoParametersEx2" classname="org.example.MyHashMapTest" time="0.002"/>
   <testcase name="checkNodeHashcode" classname="org.example.MyHashMapTest" time="0.001"/>
-  <testcase name="negativeNumberException" classname="org.example.MyHashMapTest" time="0.006"/>
+  <testcase name="negativeNumberException" classname="org.example.MyHashMapTest" time="0.002"/>
+  <testcase name="removeTest" classname="org.example.MyHashMapTest" time="0"/>
+  <testcase name="put1Branch" classname="org.example.MyHashMapTest" time="0"/>
   <testcase name="initializeWithTwoParameters" classname="org.example.MyHashMapTest" time="0.001"/>
   <testcase name="isPowerOfTwoException" classname="org.example.MyHashMapTest" time="0.002"/>
-  <testcase name="problemOfLoadFactor" classname="org.example.MyHashMapTest" time="0.004"/>
+  <testcase name="problemOfLoadFactor" classname="org.example.MyHashMapTest" time="0.007"/>
+  <testcase name="getNullIfParameterNull" classname="org.example.MyHashMapTest" time="0.001"/>
   <testcase name="getCapacity" classname="org.example.MyHashMapTest" time="0.001"/>
   <testcase name="isEmpty" classname="org.example.MyHashMapTest" time="0"/>
+  <testcase name="equalsSecondBranch" classname="org.example.MyHashMapTest" time="0"/>
 </testsuite>

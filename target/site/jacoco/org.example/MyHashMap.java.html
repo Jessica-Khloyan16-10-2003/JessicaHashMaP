@@ -35,42 +35,38 @@ class MyHashMap&lt;K, V&gt; {
  * capacity должен быть степенью двойки и меньше максимального значения (1 &lt;&lt;30)).
  */
 <span class="fc" id="L37">    public MyHashMap(int capacity, float loadFactor) {</span>
-<span class="pc bpc" id="L38" title="1 of 2 branches missed.">        if (capacity &lt; 0) {</span>
-<span class="nc" id="L39">            throw new IllegalArgumentException(&quot;Емкость не может быть отрицательным числом: &quot; + capacity);</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        if (capacity &lt; 0) {</span>
+<span class="fc" id="L39">            throw new IllegalArgumentException(&quot;Емкость не может быть отрицательным числом: &quot; + capacity);</span>
         }
-<span class="pc bpc" id="L41" title="1 of 2 branches missed.">        if (!isPowerOfTwo(capacity)) {</span>
-<span class="nc" id="L42">            throw new IllegalArgumentException(&quot;Емкость должна быть степенью двойки: &quot; + capacity);</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        if (!isPowerOfTwo(capacity)) {</span>
+<span class="fc" id="L42">            throw new IllegalArgumentException(&quot;Емкость должна быть степенью двойки: &quot; + capacity);</span>
         }
-<span class="pc bpc" id="L44" title="1 of 2 branches missed.">        if (capacity &gt; MAXIMUM_CAPACITY) {</span>
-<span class="nc" id="L45">            this.capacity = MAXIMUM_CAPACITY;</span>
-        } else {
-<span class="fc" id="L47">            this.capacity = capacity;</span>
+<span class="fc" id="L44">        this.capacity = capacity;</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        if (loadFactor &lt;= 0) {</span>
+<span class="fc" id="L46">            throw new IllegalArgumentException(&quot;Load Factor не может принимать такое значение: &quot; + loadFactor);</span>
         }
-<span class="fc bfc" id="L49" title="All 2 branches covered.">        if (loadFactor &lt;= 0) {</span>
-<span class="fc" id="L50">            throw new IllegalArgumentException(&quot;Load Factor не может принимать такое значение: &quot; + loadFactor);</span>
-        }
-<span class="fc" id="L52">        buckets = new Node[capacity];</span>
-<span class="fc" id="L53">        this.loadFactor = loadFactor;</span>
-<span class="fc" id="L54">        this.threshold = (int) (capacity*loadFactor);</span>
-<span class="fc" id="L55">    }</span>
+<span class="fc" id="L48">        buckets = new Node[capacity];</span>
+<span class="fc" id="L49">        this.loadFactor = loadFactor;</span>
+<span class="fc" id="L50">        this.threshold = (int) (capacity*loadFactor);</span>
+<span class="fc" id="L51">    }</span>
 /**
  * Конструктор с параметром capccity, loadfactor стандартный - 0.75.
  */
-<span class="fc" id="L59">    public MyHashMap(int capacity) {</span>
-<span class="fc bfc" id="L60" title="All 2 branches covered.">        if (capacity &lt; 0) {</span>
-<span class="fc" id="L61">            throw new IllegalArgumentException(&quot;Емкость не может быть отрицательным числом: &quot; + capacity);</span>
+<span class="fc" id="L55">    public MyHashMap(int capacity) {</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">        if (capacity &lt; 0) {</span>
+<span class="fc" id="L57">            throw new IllegalArgumentException(&quot;Емкость не может быть отрицательным числом: &quot; + capacity);</span>
         }
-<span class="fc bfc" id="L63" title="All 2 branches covered.">        if (!isPowerOfTwo(capacity)) {</span>
-<span class="fc" id="L64">            throw new IllegalArgumentException(&quot;Емкость должна быть степенью двойки: &quot; + capacity);</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">        if (!isPowerOfTwo(capacity)) {</span>
+<span class="fc" id="L60">            throw new IllegalArgumentException(&quot;Емкость должна быть степенью двойки: &quot; + capacity);</span>
         }
-<span class="pc bpc" id="L66" title="1 of 2 branches missed.">        if (capacity &gt; MAXIMUM_CAPACITY) {</span>
-<span class="nc" id="L67">            this.capacity = MAXIMUM_CAPACITY;</span>
+<span class="pc bpc" id="L62" title="1 of 2 branches missed.">        if (capacity &gt; MAXIMUM_CAPACITY) {</span>
+<span class="nc" id="L63">            this.capacity = MAXIMUM_CAPACITY;</span>
         } else {
-<span class="fc" id="L69">            this.capacity = capacity;</span>
+<span class="fc" id="L65">            this.capacity = capacity;</span>
         }
-<span class="fc" id="L71">        buckets = new Node[capacity];</span>
-<span class="fc" id="L72">        this.threshold = (int) (capacity*DEFAULT_LOAD_FACTOR);</span>
-<span class="fc" id="L73">    }</span>
+<span class="fc" id="L67">        buckets = new Node[capacity];</span>
+<span class="fc" id="L68">        this.threshold = (int) (capacity*DEFAULT_LOAD_FACTOR);</span>
+<span class="fc" id="L69">    }</span>
 
     /**
  * Метод проверяющий, является ли число степенью двойки. Логика работы:
@@ -81,17 +77,17 @@ class MyHashMap&lt;K, V&gt; {
  * @param n
  */
     private boolean isPowerOfTwo(int n) {
-<span class="fc bfc" id="L84" title="All 2 branches covered.">        return (n &amp; (n - 1)) == 0;</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">        return (n &amp; (n - 1)) == 0;</span>
     }
 /**
  * Возвращает фактическое кол-во пар ключ-значение
  */
     public int getSize() {
-<span class="fc" id="L90">        return size;</span>
+<span class="fc" id="L86">        return size;</span>
     }
     //метод для того, чтобы в тестах проверить увеличивается ли размер в 2 раза при достижении порога заполнения
     public int getCapacity() {
-<span class="fc" id="L94">        return capacity;</span>
+<span class="fc" id="L90">        return capacity;</span>
     }
 /**
  * Метод, который &quot;кладет&quot; в HashMap элементы. Работает по системе метода цепочек: если в ячейке массива (высчитывается по ключу) нет
@@ -102,73 +98,73 @@ class MyHashMap&lt;K, V&gt; {
  * @param newValue
 */
     public void put(K newKey, V newValue) {
-<span class="fc bfc" id="L105" title="All 2 branches covered.">        if (newKey == null) //нельзя добавлять нулевой ключ (для избежания бOльших проблем, хотя оригинальная реализация подразумевает null-ключ</span>
-<span class="fc" id="L106">            throw new IllegalArgumentException(&quot;Нулевой ключ не принимается&quot;);</span>
-<span class="fc" id="L107">        int hash = getBucketNumber(newKey); //вызывается метод, который вычисляет номер бакета. все это кладется в переменную getBucketNumber</span>
-<span class="fc" id="L108">        Node&lt;K, V&gt; newNode = new Node&lt;K, V&gt;(newKey, newValue, null); //создаем ноду с ключом, значением и нулевой ссылкой на следующий элемент, ибо его нет</span>
-<span class="fc bfc" id="L109" title="All 2 branches covered.">        if (buckets[hash] == null) {  //если по этому индексу никакая нода еще не лежит, то кладем спокойно</span>
-<span class="fc" id="L110">            buckets[hash] = newNode;</span>
-<span class="fc" id="L111">            size++;</span>
+<span class="fc bfc" id="L101" title="All 2 branches covered.">        if (newKey == null) //нельзя добавлять нулевой ключ (для избежания бOльших проблем, хотя оригинальная реализация подразумевает null-ключ</span>
+<span class="fc" id="L102">            throw new IllegalArgumentException(&quot;Нулевой ключ не принимается&quot;);</span>
+<span class="fc" id="L103">        int hash = getBucketNumber(newKey); //вызывается метод, который вычисляет номер бакета. все это кладется в переменную getBucketNumber</span>
+<span class="fc" id="L104">        Node&lt;K, V&gt; newNode = new Node&lt;K, V&gt;(newKey, newValue, null); //создаем ноду с ключом, значением и нулевой ссылкой на следующий элемент, ибо его нет</span>
+<span class="fc bfc" id="L105" title="All 2 branches covered.">        if (buckets[hash] == null) {  //если по этому индексу никакая нода еще не лежит, то кладем спокойно</span>
+<span class="fc" id="L106">            buckets[hash] = newNode;</span>
+<span class="fc" id="L107">            size++;</span>
         } else {
-<span class="fc" id="L113">            Node&lt;K, V&gt; currentNode = buckets[hash];</span>
-<span class="pc bpc" id="L114" title="1 of 2 branches missed.">            while (currentNode.next != null) {              //пока мы идем по списку и ноды непустые, мы ищем последнюю ноду, чтобы вставить нашу</span>
-<span class="nc bnc" id="L115" title="All 2 branches missed.">                if (currentNode.getKey().equals(newKey)) { //одинаковые ключи - заменяем значение и выходим</span>
-<span class="nc" id="L116">                    currentNode.setValue(newValue);</span>
-<span class="nc" id="L117">                    return;</span>
+<span class="fc" id="L109">            Node&lt;K, V&gt; currentNode = buckets[hash];</span>
+<span class="fc bfc" id="L110" title="All 2 branches covered.">            while (currentNode.next != null) {              //пока мы идем по списку и ноды непустые, мы ищем последнюю ноду, чтобы вставить нашу</span>
+<span class="pc bpc" id="L111" title="1 of 2 branches missed.">                if (currentNode.getKey().equals(newKey)) { //одинаковые ключи - заменяем значение и выходим</span>
+<span class="nc" id="L112">                    currentNode.setValue(newValue);</span>
+<span class="nc" id="L113">                    return;</span>
                 }
-<span class="nc" id="L119">                currentNode = currentNode.next;</span>
+<span class="fc" id="L115">                currentNode = currentNode.next;</span>
             }
-<span class="pc bpc" id="L121" title="1 of 2 branches missed.">            if (currentNode.key.equals(newKey)) { //т. к. мы в цикле проверяем является ли null следующий элемент от текущего,</span>
-<span class="fc" id="L122">                currentNode.setValue(newValue);  // то в один момент мы можем потерять проверку на текущий элемент.</span>
+<span class="fc bfc" id="L117" title="All 2 branches covered.">            if (currentNode.key.equals(newKey)) { //т. к. мы в цикле проверяем является ли null следующий элемент от текущего,</span>
+<span class="fc" id="L118">                currentNode.setValue(newValue);  // то в один момент мы можем потерять проверку на текущий элемент.</span>
             } else {                            // поэтому здесь повторяется данная проверка
-<span class="nc" id="L124">                currentNode.next = newNode;</span>
-<span class="nc" id="L125">                size++;</span>
+<span class="fc" id="L120">                currentNode.next = newNode;</span>
+<span class="fc" id="L121">                size++;</span>
             }
         }
-<span class="fc bfc" id="L128" title="All 2 branches covered.">        if (size&gt;=threshold) {</span>
-<span class="fc" id="L129">            resize();</span>
+<span class="fc bfc" id="L124" title="All 2 branches covered.">        if (size&gt;=threshold) {</span>
+<span class="fc" id="L125">            resize();</span>
         }
-<span class="fc" id="L131">    }</span>
+<span class="fc" id="L127">    }</span>
 /**
  * Метод, увеличивающий размер массива в 2 раза и перекидывающий в новый массив все прошлые элементы.
  */
     private void resize() {
-<span class="fc" id="L136">        capacity = capacity*2;</span>
-<span class="fc" id="L137">        Node[] newBuckets = new Node[capacity];</span>
-<span class="fc bfc" id="L138" title="All 2 branches covered.">        for (Node&lt;K,V&gt; node : buckets) {</span>
-<span class="fc" id="L139">            Node&lt;K, V&gt; current = node;</span>
-<span class="fc bfc" id="L140" title="All 2 branches covered.">            while (current != null) {</span>
-<span class="fc" id="L141">                int index = getBucketNumber(current.getKey());</span>
-<span class="pc bpc" id="L142" title="1 of 2 branches missed.">                if (newBuckets[index] == null) {</span>
-<span class="fc" id="L143">                    newBuckets[index] = new Node(current.key, current.value,null);</span>
+<span class="fc" id="L132">        capacity = capacity*2;</span>
+<span class="fc" id="L133">        Node[] newBuckets = new Node[capacity];</span>
+<span class="fc bfc" id="L134" title="All 2 branches covered.">        for (Node&lt;K,V&gt; node : buckets) {</span>
+<span class="fc" id="L135">            Node&lt;K, V&gt; current = node;</span>
+<span class="fc bfc" id="L136" title="All 2 branches covered.">            while (current != null) {</span>
+<span class="fc" id="L137">                int index = getBucketNumber(current.getKey());</span>
+<span class="fc bfc" id="L138" title="All 2 branches covered.">                if (newBuckets[index] == null) {</span>
+<span class="fc" id="L139">                    newBuckets[index] = new Node(current.key, current.value,null);</span>
                 } else {
-<span class="nc" id="L145">                    Node&lt;K,V&gt; temp = newBuckets[index];</span>
-<span class="nc bnc" id="L146" title="All 2 branches missed.">                    while (temp.next != null) {</span>
-<span class="nc" id="L147">                        temp = temp.next;</span>
+<span class="fc" id="L141">                    Node&lt;K,V&gt; temp = newBuckets[index];</span>
+<span class="fc bfc" id="L142" title="All 2 branches covered.">                    while (temp.next != null) {</span>
+<span class="fc" id="L143">                        temp = temp.next;</span>
                     }
-<span class="nc" id="L149">                    temp.next = new Node(current.key, current.value,null);</span>
+<span class="fc" id="L145">                    temp.next = new Node(current.key, current.value,null);</span>
                 }
-<span class="fc" id="L151">                current = current.next;</span>
-<span class="fc" id="L152">            }</span>
+<span class="fc" id="L147">                current = current.next;</span>
+<span class="fc" id="L148">            }</span>
         }
-<span class="fc" id="L154">        buckets = newBuckets;</span>
-<span class="fc" id="L155">    }</span>
+<span class="fc" id="L150">        buckets = newBuckets;</span>
+<span class="fc" id="L151">    }</span>
 /**
  * Метод строкового представления HashMap
  */
     @Override
     public String toString() {
-<span class="fc" id="L161">        StringBuilder result = new StringBuilder();</span>
-<span class="fc bfc" id="L162" title="All 2 branches covered.">        for (int i = 0; i &lt; capacity; i++) {</span>
-<span class="fc bfc" id="L163" title="All 2 branches covered.">            if (buckets[i] != null) {</span>
-<span class="fc" id="L164">                Node&lt;K, V&gt; node = buckets[i];</span>
-<span class="fc bfc" id="L165" title="All 2 branches covered.">                while (node != null) {</span>
-<span class="fc" id="L166">                   result.append(node);</span>
-<span class="fc" id="L167">                   node = node.next;</span>
+<span class="fc" id="L157">        StringBuilder result = new StringBuilder();</span>
+<span class="fc bfc" id="L158" title="All 2 branches covered.">        for (int i = 0; i &lt; capacity; i++) {</span>
+<span class="fc bfc" id="L159" title="All 2 branches covered.">            if (buckets[i] != null) {</span>
+<span class="fc" id="L160">                Node&lt;K, V&gt; node = buckets[i];</span>
+<span class="fc bfc" id="L161" title="All 2 branches covered.">                while (node != null) {</span>
+<span class="fc" id="L162">                   result.append(node);</span>
+<span class="fc" id="L163">                   node = node.next;</span>
                 }
             }
         }
-<span class="fc" id="L171">        return result.toString();</span>
+<span class="fc" id="L167">        return result.toString();</span>
     }
 /**
  * Метод, который возвращает по ключу элемент. Внутри производится поиск, сравнивающий целевой ключ и каждый из тех, по которым мы проходимся.
@@ -176,18 +172,18 @@ class MyHashMap&lt;K, V&gt; {
  * @param key
  */
     public V get(K key) {
-<span class="fc" id="L179">        int hash = getBucketNumber(key);</span>
-<span class="fc" id="L180">        Node&lt;K, V&gt; currentNode = buckets[hash];</span>
-<span class="fc bfc" id="L181" title="All 2 branches covered.">        if (currentNode==null) {</span>
-<span class="fc" id="L182">            return null;</span>
+<span class="fc" id="L175">        int hash = getBucketNumber(key);</span>
+<span class="fc" id="L176">        Node&lt;K, V&gt; currentNode = buckets[hash];</span>
+<span class="fc bfc" id="L177" title="All 2 branches covered.">        if (currentNode==null) {</span>
+<span class="fc" id="L178">            return null;</span>
         }
-<span class="pc bpc" id="L184" title="1 of 2 branches missed.">        while (currentNode != null) {</span>
-<span class="pc bpc" id="L185" title="1 of 2 branches missed.">            if (currentNode.getKey().equals(key)) { //равны - достаем значение текушей ноды</span>
-<span class="fc" id="L186">                return currentNode.getValue();</span>
+<span class="fc bfc" id="L180" title="All 2 branches covered.">        while (currentNode != null) {</span>
+<span class="fc bfc" id="L181" title="All 2 branches covered.">            if (currentNode.getKey().equals(key)) { //равны - достаем значение текущей ноды</span>
+<span class="fc" id="L182">                return currentNode.getValue();</span>
             }
-<span class="nc" id="L188">            currentNode = currentNode.next; //переход</span>
+<span class="fc" id="L184">            currentNode = currentNode.next; //переход</span>
         }
-<span class="nc" id="L190">        return null; //нет ноды с таким ключом - возвращаем null</span>
+<span class="fc" id="L186">        return null; //нет ноды с таким ключом - возвращаем null</span>
     }
 /**
  * Метод удаления пары ключ-значение. Так как список односвязный и у текущего элемента нет ссылки на предыдущий эл., на каждом шаге итерации
@@ -196,28 +192,28 @@ class MyHashMap&lt;K, V&gt; {
  * @param keyForRemove
  */
     public boolean remove(K keyForRemove) {
-<span class="fc" id="L199">        int hash = getBucketNumber(keyForRemove);</span>
-<span class="fc" id="L200">        Node&lt;K,V&gt; currentNode = buckets[hash];</span>
-<span class="fc" id="L201">        Node&lt;K,V&gt; previous = null; //т. к. список односвязный, нужна переменная, в которой будет лежать предыдущий эл. от текущего, чтобы ссылки переставить</span>
-<span class="fc bfc" id="L202" title="All 2 branches covered.">        if (currentNode==null) { //null - сразу возвращаем false, чтобы по циклу не идти</span>
-<span class="fc" id="L203">            return false;</span>
+<span class="fc" id="L195">        int hash = getBucketNumber(keyForRemove);</span>
+<span class="fc" id="L196">        Node&lt;K,V&gt; currentNode = buckets[hash];</span>
+<span class="fc" id="L197">        Node&lt;K,V&gt; previous = null; //т. к. список односвязный, нужна переменная, в которой будет лежать предыдущий эл. от текущего, чтобы ссылки переставить</span>
+<span class="pc bpc" id="L198" title="1 of 2 branches missed.">        if (currentNode==null) { //null - сразу возвращаем false, чтобы по циклу не идти</span>
+<span class="nc" id="L199">            return false;</span>
         }
-<span class="pc bpc" id="L205" title="1 of 2 branches missed.">        while (currentNode!=null) {</span>
-<span class="pc bpc" id="L206" title="1 of 2 branches missed.">            if (currentNode.getKey().equals(keyForRemove)) {</span>
-<span class="pc bpc" id="L207" title="1 of 2 branches missed.">                if (previous==null) { //если ключи равны и предыдущий - null (т. к. текущий эл. - 1-ый</span>
-<span class="fc" id="L208">                    buckets[hash] = buckets[hash].next; // на место текущего ставим следующий после него, тем самым удаляя в памяти ссылку на него</span>
+<span class="fc bfc" id="L201" title="All 2 branches covered.">        while (currentNode!=null) {</span>
+<span class="fc bfc" id="L202" title="All 2 branches covered.">            if (currentNode.getKey().equals(keyForRemove)) {</span>
+<span class="fc bfc" id="L203" title="All 2 branches covered.">                if (previous==null) { //если ключи равны и предыдущий - null (т. к. текущий эл. - 1-ый</span>
+<span class="fc" id="L204">                    buckets[hash] = buckets[hash].next; // на место текущего ставим следующий после него, тем самым удаляя в памяти ссылку на него</span>
+<span class="fc" id="L205">                    size--;</span>
+<span class="fc" id="L206">                    return true;</span>
+                } else {
+<span class="fc" id="L208">                    previous.next = currentNode.next; //если же нода лежит внутри списка, то просто следующим предыдущего делаем следующий от текущего</span>
 <span class="fc" id="L209">                    size--;</span>
 <span class="fc" id="L210">                    return true;</span>
-                } else {
-<span class="nc" id="L212">                    previous.next = currentNode.next; //если же нода лежит внутри списка, то просто следующим предыдущего делаем следующий от текущего</span>
-<span class="nc" id="L213">                    size--;</span>
-<span class="nc" id="L214">                    return true;</span>
                 }
             }
-<span class="nc" id="L217">            previous = currentNode; //чтобы предыдущий поймать</span>
-<span class="nc" id="L218">            currentNode = currentNode.next; //переход текущей ноды</span>
+<span class="fc" id="L213">            previous = currentNode; //чтобы предыдущий поймать</span>
+<span class="fc" id="L214">            currentNode = currentNode.next; //переход текущей ноды</span>
         }
-<span class="nc" id="L220">        return false;</span>
+<span class="fc" id="L216">        return false;</span>
     }
 /**
  * Метод, находящий индекс бакета по хэш-коду ключа.
@@ -225,13 +221,13 @@ class MyHashMap&lt;K, V&gt; {
  */
     //вычисляется номер бакета, куда нужно вставить пару ключ-значение
     private int getBucketNumber(K key) {
-<span class="pc bpc" id="L228" title="1 of 2 branches missed.">        return key == null ? 0 : Math.abs(key.hashCode());</span>
+<span class="fc bfc" id="L224" title="All 2 branches covered.">        return key == null ? 0 : Math.abs(2);</span>
     }
 /**
  * Метод, проверяющий пустой ли HashMap.
  */
     boolean isEmpty() {
-<span class="pc bpc" id="L234" title="1 of 2 branches missed.">        return size==0;</span>
+<span class="fc bfc" id="L230" title="All 2 branches covered.">        return size==0;</span>
     }
 /**
  * Класс, инкапсулирующий пару ключ-значение.
@@ -248,45 +244,45 @@ class MyHashMap&lt;K, V&gt; {
      * @param next
      * @param value
      */
-<span class="fc" id="L251">    public Node(K key, V value, Node&lt;K, V&gt; next) {</span>
-<span class="fc" id="L252">        this.key = key;</span>
-<span class="fc" id="L253">        this.value = value;</span>
-<span class="fc" id="L254">        this.next = next;</span>
-<span class="fc" id="L255">    }</span>
+<span class="fc" id="L247">    public Node(K key, V value, Node&lt;K, V&gt; next) {</span>
+<span class="fc" id="L248">        this.key = key;</span>
+<span class="fc" id="L249">        this.value = value;</span>
+<span class="fc" id="L250">        this.next = next;</span>
+<span class="fc" id="L251">    }</span>
 
     /**
      * Геттер ключа.
      */
     public K getKey() {
-<span class="fc" id="L261">        return key;</span>
+<span class="fc" id="L257">        return key;</span>
     }
 
     /**
      * Геттер значения.
      */
     public V getValue() {
-<span class="fc" id="L268">        return value;</span>
+<span class="fc" id="L264">        return value;</span>
     }
 
     /**
      * Сеттер значения.
      */
     public void setValue(V value) {
-<span class="fc" id="L275">        this.value = value;</span>
-<span class="fc" id="L276">    }</span>
+<span class="fc" id="L271">        this.value = value;</span>
+<span class="fc" id="L272">    }</span>
 
     /**
      * Переопределенный equals, который сравнивает узлы по ключу и значению.
      */
     @Override
     public boolean equals(Object obj) {
-<span class="pc bpc" id="L283" title="1 of 2 branches missed.">        if (obj == this) return true;</span>
-<span class="pc bpc" id="L284" title="1 of 2 branches missed.">        if (obj instanceof MyHashMap.Node) {</span>
-<span class="fc" id="L285">            Node&lt;?, ?&gt; node = (Node&lt;?, ?&gt;) obj;</span>
-<span class="pc bpc" id="L286" title="1 of 2 branches missed.">            return key.equals(node.getKey()) &amp;&amp;</span>
-<span class="fc bfc" id="L287" title="All 2 branches covered.">                    value.equals(node.getValue());</span>
+<span class="fc bfc" id="L279" title="All 2 branches covered.">        if (obj == this) return true;</span>
+<span class="pc bpc" id="L280" title="1 of 2 branches missed.">        if (obj instanceof MyHashMap.Node) {</span>
+<span class="fc" id="L281">            Node&lt;?, ?&gt; node = (Node&lt;?, ?&gt;) obj;</span>
+<span class="fc bfc" id="L282" title="All 2 branches covered.">            return key.equals(node.getKey()) &amp;&amp;</span>
+<span class="fc bfc" id="L283" title="All 2 branches covered.">                    value.equals(node.getValue());</span>
         }
-<span class="nc" id="L289">        return false;</span>
+<span class="nc" id="L285">        return false;</span>
     }
 
     /**
@@ -294,14 +290,14 @@ class MyHashMap&lt;K, V&gt; {
      */
     @Override
     public int hashCode() {
-<span class="fc" id="L297">        return hash(key, value);</span>
+<span class="fc" id="L293">        return hash(key, value);</span>
     }
     /**
      * Метод строкового представления узла.
      */
     @Override
     public String toString() {
-<span class="fc" id="L304">        return &quot;Элемент {&quot; +</span>
+<span class="fc" id="L300">        return &quot;Элемент {&quot; +</span>
                 &quot;ключ=&quot; + key + &quot;, значение=&quot; + value +
                 &quot;}\n&quot;;
         }
